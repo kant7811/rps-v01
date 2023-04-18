@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock-Paper_Scissors</title>
+    </head>
+    <body>
+        <h2>Check Result on Console</h2>
+        <h4>Right-click > Insepect > console</h4>
+        <script>
+            function game(){
+
+            let choices =  {
+                paper: "paper",
+                scissors: "scissors",
+                rock: "rock"
+            }
+
+           function computerPlay() {
+               let gameChoice = Object.keys(choices);
+               return gameChoice[Math.floor(Math.random()* gameChoice.length)];
+           } 
+
+           function getInput(){
+               let prompt = window.prompt("Play 5 times with good entries. \n Enter either rock or paper or scissor ").toLowerCase();
+               if (!Object.keys(choices).includes(prompt)){
+                prompt = window.prompt("Play 5 times with good entries. \n Wrong entry! Enter rock or paper or scissor").toLowerCase();
+               }
+               return prompt;
+           }
+
+           let playerSelection = getInput();
+           let computerSelection = computerPlay();
+
+           function playRound(playerSelection, computerSelection){
+               console.log(`Player: ${playerSelection}`);
+               console.log(`Computer: ${computerSelection}`);
+               if (playerSelection === computerSelection) {
+                   return "draw";
+               }else{
+                if(playerSelection === 'rock'){
+                    if (computerSelection === 'paper'){
+                        console.log("You Lose! Paper beats/covers Rock");
+                    }else{
+                        console.log("You Win! Rock beats/crushes scissors");
+                    }
+                }else if (playerSelection === 'paper'){
+                    if (computerSelection === 'rock'){
+                        console.log("You win! Paper beats/covers Rock");
+                    }else{
+                        console.log("You Lose! Scissors beats/cuts paper");
+                    }
+                }else if (playerSelection === 'scissors'){
+                    if (computerSelection === 'rock'){
+                        console.log("You Lose! Rock beats/crushes Scissors");
+                    }else{
+                        console.log("You Win! Scissors beats/cuts paper");
+                    }
+                }
+               }
+           }
+
+           return playRound(playerSelection, computerSelection);
+
+            }
+            function gameLoop(){
+                for (i = 0; i < 5; i++){
+                    console.log(game());
+                }
+            }
+
+            console.log(gameLoop());
+
+        </script>
+    </body>
+</html>
